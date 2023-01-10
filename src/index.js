@@ -13,8 +13,8 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
+        <GlobalStyles />
         <ThemeProvider theme={Theme}>
-          <GlobalStyles />
           <App />
         </ThemeProvider>
       </Router>

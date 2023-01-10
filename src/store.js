@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 import variantReducer from './state/variant'
+import userReducer from './state/user'
 
 const rootReducer = combineReducers({
-  variant: variantReducer
+  variant: variantReducer,
+  user: userReducer
 
 })
 

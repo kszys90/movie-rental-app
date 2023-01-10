@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Eslint
 .eslintrc
+
+# Env
+.env

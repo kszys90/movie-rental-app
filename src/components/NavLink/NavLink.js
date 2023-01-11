@@ -11,7 +11,7 @@ export const NavLink = (props) => {
   const linkStyle =
         {
           color: props.variant === 'light' ? 'black' : 'white',
-          fontSize: props.size === 'big' ? '140%' : props.size === 'small' ? '80%' : '100%',
+          fontSize: props.size === 'big' ? '140%' : props.size === 'small' ? '80%' : props.size === 'medium' ? '120%' : '100%',
           transition: '600ms',
           textDecoration: isHover ? 'underline' : 'inherit'
         }

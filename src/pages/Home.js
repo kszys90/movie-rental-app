@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import PageContainer from '../components/PageContainer'
 import ContentContainer from '../components/ContentContainer'
 import Title from '../components/Title'
-import SearchContainer from '../components/SearchContainer'
+import ContentHeaderContainer from '../components/ContentHeaderContainer'
 import SearchInput from '../components/SearchInput'
 import { Header } from '../components/Header/Header'
 
@@ -31,7 +31,7 @@ export const Home = () => {
     <PageContainer>
       <Header />
       <ContentContainer>
-        <SearchContainer variant={variant}>
+        <ContentHeaderContainer variant={variant}>
           <Title size={'big'}>What do You want to watch?
           </Title>
           <SearchInput
@@ -39,7 +39,7 @@ export const Home = () => {
             change={(value) => setSearchVal(value)}
             changeState={() => setState('Waiting for typing to stop...')}
           />
-        </SearchContainer>
+        </ContentHeaderContainer>
         {state !== 'Waiting for typing to stop...' ? null : <p>The search will start automatically in a moment...</p> }
         {state === 'Typing stopped' && debouncedValue === undefined ?
           // to do: items slider with recommended vids

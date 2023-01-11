@@ -7,6 +7,7 @@ import { Cart } from './pages/Cart'
 import Page404 from './pages/Page404'
 import { SearchResults } from './pages/SearchResults'
 import { Video } from './pages/Video'
+import { PageMovieInfo } from './pages/PageMovieInfo'
 
 function App () {
   return (
@@ -31,6 +32,10 @@ function App () {
         <Route
           path={'/movies'}
           element={<Movies />}
+        />
+        <Route
+          path={'/:imdbID'}
+          element={<PageMovieInfo />}
         />
         <Route
           path={'/cart'}

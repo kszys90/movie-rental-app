@@ -57,11 +57,11 @@ export const SearchResults = () => {
     <>
       <div>
         {
-          getMoviesState.error ?
-            'Error loading movies'
+          getMoviesState.loading ?
+            <Oval stroke={variant === 'dark' ? '#ffffff' : '#000000'} />
             :
-            getMoviesState.loading ?
-              <Oval stroke={variant === 'dark' ? '#ffffff' : '#000000'} />
+            getMoviesState.error ?
+              'Error loading movies'
               :
                 !getMoviesState.value ?
                   'There are no results matching your searches. Please check the entered data and try again'

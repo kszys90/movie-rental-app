@@ -70,6 +70,12 @@ export const Theme = {
       `,
       small: css`
         font-size: 110%;
+      `,
+      huge: css`
+        font-size: 200%;
+      `,
+      verySmall: css`
+        font-size: 100%;
       `
     },
     variant: {
@@ -115,7 +121,7 @@ export const Theme = {
       }
     }
   },
-  searchContainer: {
+  contentHeaderContainer: {
     dark: css`
       background: #2c2c2c;
       box-shadow:  6px 6px 12px #1c1c1c,
@@ -128,6 +134,18 @@ export const Theme = {
     `
   },
   movieContainer: {
+    dark: css`
+      background: #2c2c2c;
+      box-shadow:  6px 6px 12px #1c1c1c,
+                  -6px -6px 12px #3c3c3c;
+    `,
+    light: css`
+      background: #d8d8d8;
+      box-shadow:  5px 5px 16px #7d7d7d,
+                  -5px -5px 16px #ffffff;
+    `
+  },
+  cartItemsContainer: {
     dark: css`
       background: #2c2c2c;
       box-shadow:  6px 6px 12px #1c1c1c,
@@ -167,6 +185,20 @@ export const Theme = {
           color: #ffffff;
           border: solid 1px #000000;
     }
+      `,
+      remove: css`
+        background-color: #d91717;
+        height: 30px;
+        width: 30px;
+        border: none;
+        color: white;
+        border-radius: 15px;
+        font-size: 18px;
+        cursor: pointer;
+        &:hover {
+          height: 35px;
+          width: 35px;
+          transition: 500ms;
       `
     }
   }

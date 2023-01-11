@@ -16,7 +16,7 @@ export const Video = () => {
             This is a demo site and does not contain any videos.
           </Title>
         </div>
-        <div style={{ width: '80%', background: 'black', height: '500px', margin: '20px auto 0 auto', border: '2px solid lightgrey' }}></div>
+        <div style={{ width: '80%', background: 'black', height: '50vh', margin: '20px auto 0 auto', border: '2px solid lightgrey' }}></div>
         <div style={{ width: '80%', background: 'lightgrey', height: '25px', margin: '0 auto 0 auto', border: '2px solid lightgrey' }}></div>
       </ContentContainer>
     </PageContainer>

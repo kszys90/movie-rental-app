@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-const DefaultStyleTitle = styled.p`
+const DefaultStyleTitle = styled.h5`
     text-align: center;
-    font-size: 130%;
+    font-size: 100%;
     padding: 10px;
 `
 

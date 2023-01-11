@@ -11,33 +11,18 @@ export const removeFromCartAction = (id) => ({
   type: REMOVE,
   payload: { id }
 })
-export const getItemAction = (data) => ({
+export const buyItemAction = (data, price) => ({
   type: BUY,
-  payload: { data }
+  payload: { data, price }
 })
 
 const initialState = {
-  movies: [{
-    Title: 'Star Wars: Episode IV - A New Hope',
-    imdbID: 'tt0076759',
-    Year: '1977',
-    Type: 'movie',
-    Poster: 'https://m.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg',
-    isActive: true
-  }],
+  movies: [],
   cart: [],
-  userId: 'tt0076759',
-  balance: '100',
-  isLocalStorage: false
+  userId: '',
+  balance: '20',
+  isLocalStorage: 'false'
 }
-
-// const initialState = {
-//   movies: [],
-//   cart: [],
-//   userId: '',
-//   balance: [],
-//   isLocalStorage: 'false'
-// }
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -53,12 +38,14 @@ export const reducer = (state = initialState, action) => {
     case REMOVE:
       return {
         ...state,
-        cart: state.cart.filter(({ id }) => id !== action.payload.id)
+        cart: state.cart.filter(({ imdbID }) => imdbID !== action.payload.id)
       }
     case BUY:
       return {
         ...state,
-        movies: state.movies.concat(action.payload.data)
+        movies: state.movies.concat(action.payload.data),
+        balance: Number(state.balance) - Number(action.payload.price),
+        cart: state.cart.filter(({ imdbID }) => imdbID !== action.payload.data.imdbID)
       }
     default:
       return state

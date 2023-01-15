@@ -11,12 +11,16 @@ export const Movies = () => {
   const variant = useSelector(state => state.variant.variant)
   const movies = useSelector(state => state.user.movies)
   const navigate = useNavigate()
-
+  const mediaMatch = window.matchMedia('(max-width: 600px)')
+  const [matches, setMatches] = React.useState(mediaMatch.matches)
+  mediaMatch.onchange = (e) => {
+    setMatches(e.matches)
+  }
   return (
     <PageContainer>
       <Header />
       <ContentContainer>
-        {movies ? movies.map((movie) => renderMovie(movie, variant, movies, null, navigate)) : null}
+        {movies ? movies.map((movie) => renderMovie(movie, variant, movies, null, navigate, matches)) : null}
       </ContentContainer>
     </PageContainer>
   )

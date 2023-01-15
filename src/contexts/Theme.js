@@ -70,12 +70,14 @@ export const Theme = {
       `,
       small: css`
         font-size: 110%;
+        padding: 5px;
       `,
       huge: css`
         font-size: 200%;
       `,
       verySmall: css`
         font-size: 100%;
+        padding: 3px;
       `
     },
     variant: {
@@ -93,32 +95,6 @@ export const Theme = {
       small: css`
         font-size: 80%;
       `
-    },
-    custom: {
-      price: {
-        dark: css`
-          text-transform: capitalize;
-          font-size: 130%;
-          font-weight: 900;
-      `,
-        light: css`
-          text-transform: capitalize;
-          font-size: 130%;
-          font-weight: 900;
-        `
-      },
-      only: {
-        dark: css`
-          text-transform: capitalize;
-          font-size: 130%;
-          font-weight: 600;
-        `,
-        light: css`
-          text-transform: capitalize;
-          font-size: 130%;
-          font-weight: 600;
-        `
-      }
     }
   },
   contentHeaderContainer: {
@@ -167,24 +143,40 @@ export const Theme = {
     custom: {
       buyNow: css`
       font-weight: 900;
-      font-size: 16px;
+      font-size: 15px;
       color: #ffffff;
+      border: solid 1px #000000;
       background-color: #0062ff;
-      padding: 10px 36px;
+      padding: 12px 24px;
       border-radius: 50px;
-      transition : 1113ms;
+      transition : 500ms;
       display: flex;
       flex-direction: row;
       align-items: center;
       cursor: pointer;
-      &:hover {
-          transition : 1113ms;
+
+      @media(min-width: 601px){
+        font-weight: 900;
+        font-size: 16px;
+        color: #ffffff;
+        border: solid 1px #000000;
+        background-color: #0062ff;
+        padding: 10px 36px;
+        border-radius: 50px;
+        transition : 1113ms;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        &:hover {
+          transition : 500ms;
           padding: 10px 50px;
           transform : translateY(-0px);
           background-color: #12db00;
           color: #ffffff;
           border: solid 1px #000000;
-    }
+        }
+      }
       `,
       remove: css`
         background-color: #d91717;

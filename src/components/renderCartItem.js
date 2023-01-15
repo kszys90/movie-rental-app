@@ -2,9 +2,9 @@ import React from 'react'
 import NavLink from './NavLink'
 import Button from './Button'
 
-export const renderCartItem = (movie, variant, removeClick) => {
+export const renderCartItem = (movie, variant, removeClick, mediaMatches) => {
   const movieInfoStyle = {
-    textAlign: 'left', fontSize: '100%', padding: '5px'
+    textAlign: 'left', fontSize: mediaMatches ? '80%' : '100%', padding: '5px'
   }
   return (
     <div
@@ -26,7 +26,7 @@ export const renderCartItem = (movie, variant, removeClick) => {
         <div style={{ display: 'flex', justifyContent: 'left' }}>
           <NavLink
             variant={variant}
-            size={'big'}
+            size={mediaMatches ? 'medium' : 'big'}
             to={`/${movie.imdbID}`}
           >{movie.Title}
           </NavLink>

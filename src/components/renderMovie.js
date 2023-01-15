@@ -4,7 +4,7 @@ import MovieContainer from './MovieContainer/MovieContainer'
 import NavLink from './NavLink'
 import Text from './Text'
 
-export const renderMovie = (movie, variant, currentMovies, func, navigate) => {
+export const renderMovie = (movie, variant, currentMovies, func, navigate, mediaMatches) => {
   const movieImgContainerStyle = {
     flexBasis: '30%'
   }
@@ -62,31 +62,39 @@ export const renderMovie = (movie, variant, currentMovies, func, navigate) => {
           size={'big'}
         >{movie.Title}
         </NavLink>
-        <div style={{ padding: '5px', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '0 auto 0 auto' }}>
-          <p><Text>Year: {movie.Year}</Text></p>
-          <p><Text>Type: {movie.Type}</Text></p>
-        </div>
+        {mediaMatches ?
+          null
+          :
+            (
+              <div style={{ padding: '5px', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '0 auto 0 auto' }}>
+                <p><Text>Year: {movie.Year}</Text></p>
+                <p><Text>Type: {movie.Type}</Text></p>
+              </div>
+            )
+        }
         <div>
 
           {filteredMovies.length > 0 ?
-            <div style={{ height: '20px' }}></div>
+            mediaMatches ?
+              <div style={{ padding: '5px', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '0 auto 0 auto' }}>
+                <p><Text>Year: {movie.Year}</Text></p>
+                <p><Text>Type: {movie.Type}</Text></p>
+              </div>
+              :
+              <div style={{ height: '20px' }}></div>
             :
               (
                 <div style={{ paddingBottom: '10px' }} >
                   <p>
                     <Text
                       variant={variant}
-                      f
-                      custom={'only'}
-                    >Only:
-                    </Text>
-                    <Text
-                      variant={variant}
-                      custom={'price'}
-                    > {itemPrice}$!
+                      size={'big'}
+                    > Only: {itemPrice}$!
                     </Text>
                   </p>
-                </div>)}
+                </div>
+              )
+            }
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div style={{ textAlign: 'center' }}>
@@ -98,7 +106,7 @@ export const renderMovie = (movie, variant, currentMovies, func, navigate) => {
                   :
                   addMovietoCart}
               >
-                {filteredMovies.length > 0 ? 'Watch now!' : 'Buy now!'}
+                {filteredMovies.length > 0 ? 'Watch now!' : 'Get now!'}
               </Button>
             </div>
           </div>

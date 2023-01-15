@@ -17,6 +17,7 @@ const DefaultStyledTopBarButton = styled.button`
             padding: 10px 50px;
             transform : translateY(-0px);
 }
+
 `
 const StyledTopBarButton = styled(DefaultStyledTopBarButton)(({ theme, variant }) => theme.topBarButton[variant])
 

@@ -27,13 +27,28 @@ export const Home = () => {
     navigate(debouncedValue.replaceAll('/', ''))
   }, [cancel, debouncedValue, navigate, searchedPhrase])
 
+  const mediaMatch = window.matchMedia('(max-width: 600px)')
+  const [matches, setMatches] = React.useState(mediaMatch.matches)
+  mediaMatch.onchange = (e) => {
+    setMatches(e.matches)
+  }
+
   return (
     <PageContainer>
       <Header />
       <ContentContainer>
         <ContentHeaderContainer variant={variant}>
-          <Title size={'big'}>What do You want to watch?
-          </Title>
+          {
+            matches && debouncedValue !== undefined && debouncedValue !== '' ?
+              null
+              :
+                (
+                  <Title size={!matches ? 'big' : 'small'}>
+                    What do You want to watch?
+                  </Title>
+                )
+           }
+
           <SearchInput
             value={searchVal}
             change={(value) => setSearchVal(value)}
@@ -42,7 +57,7 @@ export const Home = () => {
         </ContentHeaderContainer>
         {state !== 'Waiting for typing to stop...' ? null : <p>The search will start automatically in a moment...</p> }
         {state === 'Typing stopped' && debouncedValue === undefined ?
-          // to do: items slider with recommended vids
+          // to do: items slider with recommended vids?
           null
           :
           <Outlet />

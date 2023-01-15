@@ -1,5 +1,6 @@
 import React from 'react'
 import StyledTopBarContainer from './TopBarContainer.styled'
+import { MdDarkMode, MdLightMode } from 'react-icons/md'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import { changeVariantAction } from '../../state/variant'
@@ -17,19 +18,28 @@ const TopBar = props => {
 
   return (
     <StyledTopBarContainer>
-      <StyledTopBarButton
-        onClick={changeVariant}
-        variant={props.variant}
-      >
-        Switch Theme
-      </StyledTopBarButton>
+      {props.mediaDisplay ?
+        props.variant === 'light' ?
+          <MdDarkMode onClick={changeVariant} />
+          :
+          <MdLightMode onClick={changeVariant} />
+        :
+          (
+            <StyledTopBarButton
+              onClick={changeVariant}
+              variant={props.variant}
+            >
+              Switch Theme
+            </StyledTopBarButton>
+          )}
     </StyledTopBarContainer>
   )
 }
 
 TopBar.propTypes = {
   children: PropTypes.node,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  mediaDisplay: PropTypes.bool
 }
 
 export default TopBar

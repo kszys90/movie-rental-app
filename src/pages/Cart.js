@@ -40,21 +40,26 @@ export const Cart = () => {
       } else { window.alert('Your balance is insufficient. Please add funds and try again') }
     }
   }
+  const mediaMatch = window.matchMedia('(max-width: 600px)')
+  const [matches, setMatches] = React.useState(mediaMatch.matches)
+  mediaMatch.onchange = (e) => {
+    setMatches(e.matches)
+  }
   return (
     <PageContainer>
       <Header />
       <ContentContainer>
         <ContentHeaderContainer variant={variant}>
           <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-            <div style={{ minHeight: '85px', display: 'flex', alignItems: 'center' }}>
-              <Title size={'huge'}>Your Cart</Title>
+            <div style={{ minHeight: matches ? 0 : '85px', display: 'flex', alignItems: 'center' }}>
+              <Title size={matches ? 'big' : 'huge'}>Your Cart</Title>
             </div>
             <div >
               <div>
                 <Title size={'verySmall'}>Balance:</Title>
               </div>
               <div>
-                <Title size={'big'}>{currentBalance} $</Title>
+                <Title size={matches ? 'small' : 'big'}>{currentBalance} $</Title>
               </div>
             </div>
           </div>
@@ -62,10 +67,10 @@ export const Cart = () => {
         <CartItemsContainer>
           {currentCart && currentCart.length > 0 ?
             <>
-              {currentCart.map((item) => renderCartItem(item, variant, removeClick))}
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <div style={{ flexBasis: '60%' }}></div>
-                <div style={{ flexBasis: '40%' }}>
+              {currentCart.map((item) => renderCartItem(item, variant, removeClick, matches))}
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: matches ? 'center' : 'auto' }}>
+                {matches ? null : <div style={{ flexBasis: '60%' }}></div>}
+                <div style={{ flexBasis: matches ? 'auto' : '40%' }}>
                   <div style={{ display: 'flex', justifyContent: 'center' }} ><Title size={'big'}>Total price: {totalPrice}$</Title></div>
                   <div style={{ display: 'flex', justifyContent: 'center', height: '55px' }} >
                     <Button

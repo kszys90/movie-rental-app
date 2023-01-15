@@ -11,6 +11,14 @@ const DefaultStyleSearchInput = styled.input`
         padding-right: 25px;
         transition: 1000ms;
     }
+    @media (max-width: 600px){
+        width: 80%;
+        padding: 5px;
+        &:focus {
+            padding-left: 15px;
+            padding-right: 15px;
+            transition: 1000ms;
+    }
 `
 
 const StyledSearchInput = styled(DefaultStyleSearchInput)(({ theme, variant }) => variant ? theme.searchInput.variant[variant] : DefaultStyleSearchInput)

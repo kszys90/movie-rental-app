@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import Oval from 'react-loading-icons/dist/esm/components/oval'
 import { useSelector } from 'react-redux'
@@ -8,19 +9,25 @@ import ContentContainer from '../components/ContentContainer'
 import ContentHeaderContainer from '../components/ContentHeaderContainer'
 import { Header } from '../components/Header/Header'
 import PageContainer from '../components/PageContainer'
+import { renderMovieInfo } from '../components/renderMovieInfo'
 import Title from '../components/Title'
 
 export const PageMovieInfo = () => {
   const { imdbID } = useParams()
   const [state, doFetch] = useAsyncFn(getMovie)
   const variant = useSelector(state => state.variant.variant)
-  const movie = state && state.value
 
   React.useEffect(() => {
     if (imdbID) {
       doFetch(imdbID)
     }
   }, [doFetch, imdbID])
+
+  const mediaMatch = window.matchMedia('(max-width: 600px)')
+  const [matches, setMatches] = React.useState(mediaMatch.matches)
+  mediaMatch.onchange = (e) => {
+    setMatches(e.matches)
+  }
 
   return (
     <PageContainer>
@@ -38,7 +45,8 @@ export const PageMovieInfo = () => {
                       (
                         <ContentContainer>
                           <ContentHeaderContainer variant={variant}>
-                            <div style={{ marginBottom: '10px' }}><Title size={'huge'}>{movie.Title}</Title ></div>
+                            {state && state.value ? renderMovieInfo(state.value, matches) : null}
+                            {/* <div style={{ marginBottom: '10px' }}><Title size={matches ? 'big' : 'huge'}>{movie.Title}</Title ></div>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                               <div style={{ flexBasis: '30%' }}>
                                 {
@@ -107,7 +115,7 @@ export const PageMovieInfo = () => {
                                 </div>
                               </div>
                             </div>
-                            {movie.Plot === 'N/A' ? null : (<div style={{ margin: '20px auto 10px auto', fontSize: '120%', textAlign: ' justify' }}>{movie.Plot}</div>)}
+                            {movie.Plot === 'N/A' ? null : (<div style={{ margin: '20px auto 10px auto', fontSize: '120%', textAlign: ' justify' }}>{movie.Plot}</div>)} */}
                           </ContentHeaderContainer>
                         </ContentContainer>
                       )

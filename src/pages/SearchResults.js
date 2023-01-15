@@ -28,11 +28,16 @@ export const SearchResults = () => {
     }
   }
   const navigate = useNavigate()
+  const mediaMatch = window.matchMedia('(max-width: 600px)')
+  const [matches, setMatches] = React.useState(mediaMatch.matches)
+  mediaMatch.onchange = (e) => {
+    setMatches(e.matches)
+  }
 
   function renderPartly () {
     return (
       <>
-        {getMoviesState.value.slice(0, Number(sliceResults)).map((movie) => renderMovie(movie, variant, currentMovies, addItemToCart, navigate))}
+        {getMoviesState.value.slice(0, Number(sliceResults)).map((movie) => renderMovie(movie, variant, currentMovies, addItemToCart, navigate, matches))}
         {getMoviesState.value.length < sliceResults
           ? null :
           <div>
@@ -70,7 +75,7 @@ export const SearchResults = () => {
                   getMoviesState.value.length > 5 ?
                     renderPartly()
                     :
-                    getMoviesState.value.map((movie) => renderMovie(movie, variant, currentMovies, addItemToCart, navigate))
+                    getMoviesState.value.map((movie) => renderMovie(movie, variant, currentMovies, addItemToCart, navigate, matches))
                      }
       </div>
     </>

@@ -12,13 +12,13 @@ export const NavMenuItem = (props) => {
         ({ isActive }) => ({
           padding: '0',
           color: props.variant === 'light' ? 'black' : 'white',
-          fontSize: isHover ? '200%' : '180%',
+          fontSize: props.mediaDisplay ? '150%' : isHover ? '200%' : '180%',
           transition: '600ms',
           textDecoration: 'inherit',
           fontWeight: isActive ? 900 : 400,
           verticalAlign: 'bottom',
           '& svg': {
-            fontSize: isHover ? '200%' : '180%',
+            fontSize: props.mediaDisplay ? '150%' : isHover ? '200%' : '180%',
             transition: '600ms'
           }
         })
@@ -27,7 +27,7 @@ export const NavMenuItem = (props) => {
     <RouterNavLink
       onClick={handleClick}
       to={props.to}
-      style={linkStyle}
+      style={props.mediaDisplay !== false ? linkStyle : { display: 'none' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -40,7 +40,8 @@ export const NavMenuItem = (props) => {
 NavMenuItem.propTypes = {
   children: PropTypes.node,
   to: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  mediaDisplay: PropTypes.bool
 }
 
 export default NavMenuItem

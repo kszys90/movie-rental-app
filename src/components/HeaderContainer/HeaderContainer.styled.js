@@ -9,7 +9,6 @@ const DefaultStyledHeaderContainer = styled.div`
     text-align: center;
     position: absolute;
     position: sticky;
-    border-radius: 40px;
     top: 0.001px;
 
 `
